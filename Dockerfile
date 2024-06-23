@@ -10,10 +10,14 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copia o arquivo JAR para o contêiner
-COPY target/API_IOT_BACKEND_SPRING_BOOT.jar /app/API_IOT_BACKEND_SPRING_BOOT.jar
+#COPY target/API_IOT_BACKEND_SPRING_BOOT.jar /app/API_IOT_BACKEND_SPRING_BOOT.jar
 
+
+COPY build/libs/backend-0.0.1-SNAPSHOT.jar app.jar
 # Expõe a porta que a aplicação vai rodar
 EXPOSE 8080
 
 # Comando para executar a aplicação
-CMD ["java", "-jar", "API_IOT_BACKEND_SPRING_BOOT.jar"]
+#CMD ["java", "-jar", "API_IOT_BACKEND_SPRING_BOOT.jar"]
+
+ENTRYPOINT ["java", "-jar", "app.jar"]

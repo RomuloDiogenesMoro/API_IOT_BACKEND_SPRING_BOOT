@@ -32,6 +32,18 @@ public class PessoaController {
         }
     }
 
+
+    @Autowired
+    private RabbitMQSender rabbitMQSender;
+
+    @PostMapping("/send-message")
+    public String sendMessageToQueue(@RequestBody String message) {
+        rabbitMQSender.send(message);
+        return "Mensagem enviada para RabbitMQ: " + message;
+    }
+
+
+
     @Operation(summary = "Obtém todas as pessoas")
     @ApiResponse(responseCode = "200", description = "Operação bem-sucedida")
     @CrossOrigin(origins = "http://localhost:3000")
